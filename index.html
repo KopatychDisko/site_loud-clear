@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loud&Clear - Площадка звукорежиссеров</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                        url('https://static.vecteezy.com/system/resources/previews/034/430/818/large_2x/professional-audio-mixing-console-in-dark-room-3d-rendering-toned-image-shot-of-a-modern-music-record-studio-control-desk-with-computer-screen-show-user-interface-of-daw-software-ai-generated-free-photo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+        }
+        
+        .logo-waves {
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        .hero-logo-waves {
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.2); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .service-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+        
+        .artist-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .artist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+        
+        .advantage-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #2c5282 0%, #2a4d7a 100%);
+            transform: translateY(-2px);
+        }
+        
+        .footer-link {
+            color: #999;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #fff;
+        }
+        
+        .mobile-menu {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu.active {
+                display: block;
+            }
+            
+            .desktop-menu {
+                display: none;
+            }
+            
+            .hero-bg {
+                background-attachment: scroll;
+            }
+        }
+        
+        .section-padding {
+            padding: 4rem 0;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .rating-stars {
+            color: #fbbf24;
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .text-improved {
+            color: #e2e8f0;
+        }
+        
+        .text-improved-light {
+            color: #cbd5e0;
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="smooth-scroll">
+    <!-- Header -->
+    <header class="gradient-bg py-6 sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="logo-container" onclick="scrollToTop()">
+                    <svg class="logo-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="30" cy="30" r="29" stroke="#fff" stroke-width="2"/>
+                        <rect class="logo-waves" x="15" y="20" width="4" height="20" fill="#fff"/>
+                        <rect class="logo-waves" x="22" y="15" width="4" height="30" fill="#fff" style="animation-delay: 0.2s"/>
+                        <rect class="logo-waves" x="29" y="10" width="4" height="40" fill="#fff" style="animation-delay: 0.4s"/>
+                        <rect class="logo-waves" x="36" y="15" width="4" height="30" fill="#fff" style="animation-delay: 0.6s"/>
+                        <rect class="logo-waves" x="43" y="20" width="4" height="20" fill="#fff" style="animation-delay: 0.8s"/>
+                    </svg>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white">Loud&Clear</h1>
+                        <p class="text-sm text-gray-300">Площадка звукорежиссеров</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="desktop-menu hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="#services" class="text-white hover:text-gray-300 transition">Услуги</a></li>
+                        <li><a href="#team" class="text-white hover:text-gray-300 transition">Команда</a></li>
+                        <li><a href="#advantages" class="text-white hover:text-gray-300 transition">Преимущества</a></li>
+                        <li><a href="#contact" class="text-white hover:text-gray-300 transition">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu mt-4" id="mobile-menu">
+                <ul class="flex flex-col space-y-4">
+                    <li><a href="#services" class="text-white hover:text-gray-300 transition">Услуги</a></li>
+                    <li><a href="#team" class="text-white hover:text-gray-300 transition">Команда</a></li>
+                    <li><a href="#advantages" class="text-white hover:text-gray-300 transition">Преимущества</a></li>
+                    <li><a href="#contact" class="text-white hover:text-gray-300 transition">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg">
+        <div class="container mx-auto px-4">
+            <div class="hero-content text-center max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <svg class="hero-logo" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="60" cy="60" r="58" stroke="#fff" stroke-width="4"/>
+                        <rect class="hero-logo-waves" x="30" y="40" width="8" height="40" fill="#fff"/>
+                        <rect class="hero-logo-waves" x="44" y="30" width="8" height="60" fill="#fff" style="animation-delay: 0.2s"/>
+                        <rect class="hero-logo-waves" x="58" y="20" width="8" height="80" fill="#fff" style="animation-delay: 0.4s"/>
+                        <rect class="hero-logo-waves" x="72" y="30" width="8" height="60" fill="#fff" style="animation-delay: 0.6s"/>
+                        <rect class="hero-logo-waves" x="86" y="40" width="8" height="40" fill="#fff" style="animation-delay: 0.8s"/>
+                    </svg>
+                </div>
+                <h2 class="text-6xl font-bold mb-4 text-white text-shadow">Loud&Clear</h2>
+                <p class="text-2xl text-gray-100 mb-8 text-shadow">
+                    Объединение талантливых звукорежиссеров со всей России. Более 50 профессионалов с опытом работы от 5 лет.
+                </p>
+                <a href="#services" class="btn-primary text-white px-8 py-3 rounded-lg text-lg font-semibold inline-block">
+                    Наши услуги
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-padding" style="background: #0a0a0a;">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8 text-white">О нашей компании</h2>
+                <p class="text-lg text-improved mb-6 leading-relaxed">
+                    Loud&Clear - это объединение талантливых звукорежиссеров со всей России, созданное в 2018 году. 
+                    Начав с небольшой студии в Москве, мы выросли в национальную платформу, объединяющую более 50 профессионалов звука.
+                </p>
+                <p class="text-lg text-improved-light leading-relaxed">
+                    Наша миссия - сделать качественный звук доступным каждому музыканту, независимо от жанра и уровня подготовки. 
+                    Мы сочетаем техническое мастерство с творческим подходом, чтобы ваш звук был действительно Loud&Clear.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-12 text-center text-white">Наши услуги</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card rounded-lg overflow-hidden">
+                    <div class="h-48 bg-gray-800 flex items-center justify-center">
+                        <i class="fas fa-sliders-h text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white text-center">Сведение треков</h3>
+                        <p class="text-gray-300 mb-4 text-center">Профессиональное сведение ваших треков для идеального баланса всех элементов композиции.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold">от 3 000 ₽</span>
+                            <a href="https://t.me/loudandclear_bot" target="_blank" class="btn-secondary text-white px-4 py-2 rounded font-semibold">
+                                <i class="fab fa-telegram mr-1"></i> Заказать
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card rounded-lg overflow-hidden">
+                    <div class="h-48 bg-gray-800 flex items-center justify-center">
+                        <i class="fas fa-star text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white text-center">Мастеринг</h3>
+                        <p class="text-gray-300 mb-4 text-center">Финальная полировка вашего трека для достижения коммерческого уровня громкости и качества.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold">от 2 500 ₽</span>
+                            <a href="https://t.me/loudandclear_bot" target="_blank" class="btn-secondary text-white px-4 py-2 rounded font-semibold">
+                                <i class="fab fa-telegram mr-1"></i> Заказать
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card rounded-lg overflow-hidden">
+                    <div class="h-48 bg-gray-800 flex items-center justify-center">
+                        <i class="fas fa-drum text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white text-center">Продакшн битов</h3>
+                        <p class="text-gray-300 mb-4 text-center">Создание уникальных битов под ваш стиль с учетом современных тенденций музыки.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold">от 5 000 ₽</span>
+                            <a href="https://t.me/loudandclear_bot" target="_blank" class="btn-secondary text-white px-4 py-2 rounded font-semibold">
+                                <i class="fab fa-telegram mr-1"></i> Заказать
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section id="advantages" class="section-padding" style="background: #0a0a0a;">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-12 text-center text-white">Почему выбирают нас</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Advantage 1 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-users text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Команда профессионалов</h3>
+                    <p class="text-gray-300">50+ звукорежиссеров с опытом работы от 5 лет в различных жанрах музыки</p>
+                </div>
+                
+                <!-- Advantage 2 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-tachometer-alt text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Быстрые сроки</h3>
+                    <p class="text-gray-300">Среднее время выполнения заказа - 3 дня, срочные заказы за 24 часа</p>
+                </div>
+                
+                <!-- Advantage 3 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-medal text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Гарантия качества</h3>
+                    <p class="text-gray-300">Бесплатные правки в течение 7 дней после получения результата</p>
+                </div>
+                
+                <!-- Advantage 4 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-ruble-sign text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Доступные цены</h3>
+                    <p class="text-gray-300">Гибкая система скидок для постоянных клиентов и объемных заказов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Section -->
+    <section id="team" class="section-padding bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-12 text-center text-white">Наши звукорежиссеры</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="artists-container">
+                <!-- Artists will be loaded here -->
+            </div>
+            
+            <div class="text-center mt-12">
+                <button id="load-more" class="btn-primary text-white px-8 py-3 rounded-lg text-lg font-semibold">
+                    Показать еще
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Telegram CTA Section -->
+    <section id="contact" class="section-padding gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <i class="fab fa-telegram text-6xl text-white mb-6"></i>
+                <h2 class="text-4xl font-bold mb-6 text-white">Общайтесь с нами в Telegram</h2>
+                <p class="text-xl mb-8 text-gray-300">
+                    Наш чат-бот поможет вам быстро выбрать звукорежиссера, рассчитать стоимость работы и оформить заказ.
+                    Получите консультацию прямо сейчас!
+                </p>
+                <a href="https://t.me/loudandclear_bot" target="_blank" class="btn-primary text-white px-8 py-4 rounded-lg text-lg font-semibold inline-block">
+                    <i class="fab fa-telegram mr-2"></i> Перейти в Telegram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start">
+                        <i class="fas fa-volume-up text-2xl mr-2 text-white"></i>
+                        <span class="text-xl font-bold text-white">Loud&Clear</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">Площадка звукорежиссеров России © 2023</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="footer-link">
+                        <i class="fab fa-vk text-xl"></i>
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fab fa-telegram text-xl"></i>
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Artists Database
+        const artistsDatabase = [
+            {
+                id: 1,
+                name: "Алексей Петров",
+                age: 32,
+                rating: 4.9,
+                specialization: "Мастеринг, хип-хоп, электроника",
+                description: "Опыт работы 10 лет. Работал с такими артистами как Pharaoh, Скриптонит, Элджей. Специализируюсь на современном звучании хип-хопа и электронной музыки.",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+                works: ["Pharaoh - Дико", "Скриптонит - Вечеринка", "Элджей - Розовое вино"],
+                reviews: [
+                    { name: "Андрей М.", text: "Отличная работа! Очень доволен качеством мастеринга.", rating: 5 },
+                    { name: "Мария К.", text: "Профессиональный подход, быстрая работа. Рекомендую!", rating: 5 }
+                ]
+            },
+            {
+                id: 2,
+                name: "Мария Иванова",
+                age: 28,
+                rating: 4.8,
+                specialization: "Сведение, поп, R&B",
+                description: "Специалист по вокалу и созданию чистого, прозрачного звучания. Работаю с поп-исполнителями более 7 лет.",
+                image: "https://images.unsplash.com/photo-1494790108755-2616b612b5ac?w=300&h=300&fit=crop&crop=face",
+                works: ["Дима Билан - Держи", "Polina - Небо", "Artik & Asti - Грустный дэнс"],
+                reviews: [
+                    { name: "Игорь С.", text: "Мария сделала мой вокал идеальным! Спасибо за профессионализм.", rating: 5 },
+                    { name: "Лена П.", text: "Очень довольна результатом. Все сделано качественно и в срок.", rating: 4 }
+                ]
+            },
+            {
+                id: 3,
+                name: "Дмитрий Смирнов",
+                age: 35,
+                rating: 5.0,
+                specialization: "Биты, трэп, дрилл",
+                description: "Создаю хардкорные биты с 2015 года. Более 500 проданных инструменталов. Работал с Face, Morgenshtern, Slava Marlow.",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+                works: ["Face - Юморист", "Morgenshtern - Cadillac", "Slava Marlow - Снова я напиваюсь"],
+                reviews: [
+                    { name: "Максим Р.", text: "Лучшие биты в России! Дмитрий - настоящий профи.", rating: 5 },
+                    { name: "Александр В.", text: "Отличное качество, креативный подход. Рекомендую всем!", rating: 5 }
+                ]
+            },
+            {
+                id: 4,
+                name: "Екатерина Кузнецова",
+                age: 29,
+                rating: 4.7,
+                specialization: "Сведение, рок, метал",
+                description: "Люблю тяжелую музыку и умею делать её по-настоящему мощной. Работаю с рок-группами по всей России.",
+                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
+                works: ["Слот - Circles", "Amatory - Черно-белые дни", "Louna - Мама"],
+                reviews: [
+                    { name: "Роман Л.", text: "Екатерина понимает рок-музыку! Отличная работа со звуком.", rating: 5 },
+                    { name: "Денис К.", text: "Профессиональный подход к тяжелой музыке. Очень доволен.", rating: 4 }
+                ]
+            },
+            {
+                id: 5,
+                name: "Иван Новиков",
+                age: 31,
+                rating: 4.9,
+                specialization: "Мастеринг, электронная музыка",
+                description: "Специализируюсь на доведении электронных треков до совершенства. Работаю с лейблами по всему миру.",
+                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face",
+                works: ["Arty - Together We Are", "Bobina - Rocket Ride", "Swanky Tunes - Fix Me"],
+                reviews: [
+                    { name: "Владимир Т.", text: "Иван довел мой трек до мирового уровня! Благодарю за работу.", rating: 5 },
+                    { name: "Сергей М.", text: "Отличное понимание электронной музыки. Рекомендую!", rating: 5 }
+                ]
+            },
+            {
+                id: 6,
+                name: "Ольга Морозова",
+                age: 27,
+                rating: 4.6,
+                specialization: "Сведение, поп, джаз",
+                description: "Делаю музыку теплой и живой, с акцентом на натуральность звучания. Особенно люблю работать с джазовыми композициями.",
+                image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&h=300&fit=crop&crop=face",
+                works: ["Диана Арбенина - Сон", "Земфира - Хочешь", "Мумий Тролль - Владивосток 2000"],
+                reviews: [
+                    { name: "Анна Ф.", text: "Ольга создает неповторимую атмосферу в музыке. Спасибо!", rating: 5 },
+                    { name: "Михаил Д.", text: "Отличная работа с джазовыми композициями. Профессионал!", rating: 4 }
+                ]
+            },
+            {
+                id: 7,
+                name: "Артем Лебедев",
+                age: 33,
+                rating: 4.8,
+                specialization: "Биты, лоу-фай, чилл",
+                description: "Создаю атмосферные инструменталы для расслабления и медитации. Мои треки набрали более 10 млн прослушиваний.",
+                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face",
+                works: ["Chill Beats Vol.1", "Lo-Fi Study Music", "Midnight Vibes"],
+                reviews: [
+                    { name: "Елена Р.", text: "Артем создает магию! Его биты идеально подходят для работы.", rating: 5 },
+                    { name: "Дмитрий З.", text: "Отличные лоу-фай биты. Качество на высоте!", rating: 4 }
+                ]
+            },
+            {
+                id: 8,
+                name: "Анна Соколова",
+                age: 30,
+                rating: 4.9,
+                specialization: "Мастеринг, классика, саундтреки",
+                description: "Придаю музыке кинематографическое звучание и глубину. Работаю с композиторами кино и театра.",
+                image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&h=300&fit=crop&crop=face",
+                works: ["Саундтрек к фильму 'Движение вверх'", "Музыка к спектаклю 'Гамлет'", "Концерт для скрипки"],
+                reviews: [
+                    { name: "Константин О.", text: "Анна превращает музыку в кино! Невероятный профессионализм.", rating: 5 },
+                    { name: "Мария Л.", text: "Работа с классической музыкой на высшем уровне. Браво!", rating: 5 }
+                ]
+            },
+            {
+                id: 9,
+                name: "Максим Волков",
+                age: 34,
+                rating: 4.7,
+                specialization: "Сведение, хип-хоп, рэп",
+                description: "Делаю рэп-вокал четким и пробивным, биты - качающими. Работаю с андеграундными и коммерческими артистами.",
+                image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=300&h=300&fit=crop&crop=face",
+                works: ["Oxxxymiron - Горгород", "Хаски - Поэма о родине", "Miyagi - Там ветер"],
+                reviews: [
+                    { name: "Артур Н.", text: "Максим понимает хип-хоп! Отличная работа с вокалом.", rating: 5 },
+                    { name: "Иван П.", text: "Профессиональный подход к рэп-музыке. Рекомендую!", rating: 4 }
+                ]
+            },
+            {
+                id: 10,
+                name: "София Петрова",
+                age: 26,
+                rating: 4.8,
+                specialization: "Сведение, инди, альтернатива",
+                description: "Создаю уникальное звучание для инди-артистов. Люблю экспериментировать с альтернативными жанрами.",
+                image: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=300&h=300&fit=crop&crop=face",
+                works: ["Monetochka - Каждый раз", "Кино - Группа крови", "Альянс - На заре"],
+                reviews: [
+                    { name: "Олег В.", text: "София создает неповторимое звучание! Очень творческий подход.", rating: 5 },
+                    { name: "Татьяна С.", text: "Отличная работа с альтернативной музыкой. Браво!", rating: 5 }
+                ]
+            },
+            {
+                id: 11,
+                name: "Владислав Орлов",
+                age: 29,
+                rating: 4.9,
+                specialization: "Биты, фонк, дабстеп",
+                description: "Специализируюсь на создании мощных басовых линий и агрессивного звучания. Работаю с EDM-проектами.",
+                image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&h=300&fit=crop&crop=face",
+                works: ["Phonk Beats Collection", "Dubstep Madness", "Bass Drop Anthem"],
+                reviews: [
+                    { name: "Егор К.", text: "Владислав создает безумные басы! Отличная работа с электроникой.", rating: 5 },
+                    { name: "Николай Ф.", text: "Мощное звучание, отличное качество. Рекомендую!", rating: 5 }
+                ]
+            },
+            {
+                id: 12,
+                name: "Кристина Белова",
+                age: 25,
+                rating: 4.6,
+                specialization: "Мастеринг, поп, диско",
+                description: "Молодой, но талантливый специалист. Работаю с современными поп-исполнителями и диско-проектами.",
+                image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&h=300&fit=crop&crop=face",
+                works: ["Дискотека Авария - Новогодняя", "Время и Стекло - На стиле", "Artik & Asti - Тише"],
+                reviews: [
+                    { name: "Павел Л.", text: "Кристина отлично работает с поп-музыкой! Современный подход.", rating: 5 },
+                    { name: "Светлана Р.", text: "Молодой талант! Отличная работа с диско-треками.", rating: 4 }
+                ]
+            }
+        ];
+
+        // Variables for pagination
+        let currentPage = 1;
+        const artistsPerPage = 3;
+        const maxArtists = 12;
+        
+        // Function to render artists
+        function renderArtists(page) {
+            const startIndex = (page - 1) * artistsPerPage;
+            const endIndex = Math.min(startIndex + artistsPerPage, maxArtists);
+            const artistsToShow = artistsDatabase.slice(startIndex, endIndex);
+            
+            const container = document.getElementById('artists-container');
+            
+            artistsToShow.forEach((artist, index) => {
+                const artistCard = document.createElement('div');
+                artistCard.className = 'artist-card rounded-lg overflow-hidden fade-in-up';
+                artistCard.style.animationDelay = `${index * 0.2}s`;
+                artistCard.innerHTML = `
+                    <div class="h-48 bg-gray-800 flex items-center justify-center">
+                        <img src="${artist.image}" alt="${artist.name}" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-white">${artist.name}</h3>
+                            <span class="text-gray-400 text-sm">${artist.age} лет</span>
+                        </div>
+                        <div class="flex mb-2">
+                            ${Array(5).fill().map((_, i) => 
+                                `<i class="fas fa-star${i < Math.floor(artist.rating) ? '' : (artist.rating % 1 > 0.5 && i === Math.floor(artist.rating)) ? '-half-alt' : '-o'} rating-stars text-sm"></i>`
+                            ).join('')}
+                            <span class="ml-2 text-gray-400 text-sm">${artist.rating}</span>
+                        </div>
+                        <p class="text-gray-300 font-medium text-sm mb-2">${artist.specialization}</p>
+                        <p class="text-gray-400 text-sm mb-3 line-clamp-2">${artist.description.substring(0, 80)}...</p>
+                        <button class="btn-primary w-full text-white py-2 rounded text-sm font-semibold" onclick="openArtistDetail(${artist.id})">
+                            Подробнее
+                        </button>
+                    </div>
+                `;
+                container.appendChild(artistCard);
+            });
+            
+            // Hide load more button if no more artists
+            const loadMoreBtn = document.getElementById('load-more');
+            if (endIndex >= maxArtists) {
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+        
+        // Function to open artist detail page
+        function openArtistDetail(artistId) {
+            // Create URL with artist ID parameter
+            const url = `artist.html?id=${artistId}`;
+            window.location.href = url;
+        }
+        
+        // Function to scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Render initial artists
+            renderArtists(currentPage);
+            
+            // Load more button
+            document.getElementById('load-more').addEventListener('click', function() {
+                currentPage++;
+                renderArtists(currentPage);
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

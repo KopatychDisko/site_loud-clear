@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loud&Clear - JavaScript Functions</title>
+</head>
+<body>
+    <script>
+        // Artists Database
+        const artistsDatabase = [
+            {
+                id: 1,
+                name: "Алексей Петров",
+                age: 32,
+                rating: 4.9,
+                specialization: "Мастеринг, хип-хоп, электроника",
+                description: "Опыт работы 10 лет. Работал с такими артистами как Pharaoh, Скриптонит, Элджей. Специализируюсь на современном звучании хип-хопа и электронной музыки. Мой подход основан на сочетании классических принципов звукорежиссуры с современными технологиями обработки звука.",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+                works: ["Pharaoh - Дико", "Скриптонит - Вечеринка", "Элджей - Розовое вино"],
+                reviews: [
+                    { name: "Андрей М.", text: "Отличная работа! Очень доволен качеством мастеринга.", rating: 5 },
+                    { name: "Мария К.", text: "Профессиональный подход, быстрая работа. Рекомендую!", rating: 5 },
+                    { name: "Дмитрий П.", text: "Алексей превратил мой демо-трек в хит! Невероятное качество.", rating: 5 }
+                ],
+                price: "от 3000 ₽",
+                experience: "10 лет",
+                completedOrders: 247
+            },
+            {
+                id: 2,
+                name: "Мария Иванова",
+                age: 28,
+                rating: 4.8,
+                specialization: "Сведение, поп, R&B",
+                description: "Специалист по вокалу и созданию чистого, прозрачного звучания. Работаю с поп-исполнителями более 7 лет. Особое внимание уделяю работе с женским вокалом и созданию воздушных, объемных аранжировок.",
+                image: "https://images.unsplash.com/photo-1494790108755-2616b612b5ac?w=300&h=300&fit=crop&crop=face",
+                works: ["Дима Билан - Держи", "Polina - Небо", "Artik & Asti - Грустный дэнс"],
+                reviews: [
+                    { name: "Игорь С.", text: "Мария сделала мой вокал идеальным! Спасибо за профессионализм.", rating: 5 },
+                    { name: "Лена П.", text: "Очень довольна результатом. Все сделано качественно и в срок.", rating: 4 },
+                    { name: "Василий Т.", text: "Отличная работа с поп-музыкой. Звучание получилось современным.", rating: 5 }
+                ],
+                price: "от 2500 ₽",
+                experience: "7 лет",
+                completedOrders: 189
+            },
+            {
+                id: 3,
+                name: "Дмитрий Смирнов",
+                age: 35,
+                rating: 5.0,
+                specialization: "Биты, трэп, дрилл",
+                description: "Создаю хардкорные биты с 2015 года. Более 500 проданных инструменталов. Работал с Face, Morgenshtern, Slava Marlow. Специализируюсь на создании агрессивного, современного звучания в стиле трэп и дрилл.",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+                works: ["Face - Юморист", "Morgenshtern - Cadillac", "Slava Marlow - Снова я напиваюсь"],
+                reviews: [
+                    { name: "Максим Р.", text: "Лучшие биты в России! Дмитрий - настоящий профи.", rating: 5 },
+                    { name: "Александр В.", text: "Отличное качество, креативный подход. Рекомендую всем!", rating: 5 },
+                    { name: "Егор К.", text: "Биты качают! Работаю с Дмитрием уже 2 года.", rating: 5 }
+                ],
+                price: "от 5000 ₽",
+                experience: "8 лет",
+                completedOrders: 312
+            },
+            {
+                id: 4,
+                name: "Екатерина Кузнецова",
+                age: 29,
+                rating: 4.7,
+                specialization: "Сведение, рок, метал",
+                description: "Люблю тяжелую музыку и умею делать её по-настоящему мощной. Работаю с рок-группами по всей России. Мой стиль - это сочетание мощности и чистоты звучания, которое позволяет каждому инструменту звучать ярко и отчетливо.",
+                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
+                works: ["Слот - Circles", "Amatory - Черно-белые дни", "Louna - Мама"],
+                reviews: [
+                    { name: "Роман Л.", text: "Екатерина понимает рок-музыку! Отличная работа со звуком.", rating: 5 },
+                    { name: "Денис К.", text: "Профессиональный подход к тяжелой музыке. Очень доволен.", rating: 4 },
+                    { name: "Антон С.", text: "Наша группа звучит мощно! Спасибо за качественную работу.", rating: 5 }
+                ],
+                price: "от 4000 ₽",
+                experience: "6 лет",
+                completedOrders: 156
+            },
+            {
+                id: 5,
+                name: "Иван Новиков",
+                age: 31,
+                rating: 4.9,
+                specialization: "Мастеринг, электронная музыка",
+                description: "Специализируюсь на доведении электронных треков до совершенства. Работаю с лейблами по всему миру. Мой подход основан на создании максимально чистого и мощного звучания для танцевальных площадок.",
+                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face",
+                works: ["Arty - Together We Are", "Bobina - Rocket Ride", "Swanky Tunes - Fix Me"],
+                reviews: [
+                    { name: "Владимир Т.", text: "Иван довел мой трек до мирового уровня! Благодарю за работу.", rating: 5 },
+                    { name: "Сергей М.", text: "Отличное понимание электронной музыки. Рекомендую!", rating: 5 },
+                    { name: "Алексей Ф.", text: "Профессиональный мастеринг для клубной музыки. Топ!", rating: 5 }
+                ],
+                price: "от 3500 ₽",
+                experience: "9 лет",
+                completedOrders: 278
+            },
+            {
+                id: 6,
+                name: "Ольга Морозова",
+                age: 27,
+                rating: 4.6,
+                specialization: "Сведение, поп, джаз",
+                description: "Делаю музыку теплой и живой, с акцентом на натуральность звучания. Особенно люблю работать с джазовыми композициями и живыми инструментами. Мой стиль - это сочетание технического мастерства и художественного вкуса.",
+                image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&h=300&fit=crop&crop=face",
+                works: ["Диана Арбенина - Сон", "Земфира - Хочешь", "Мумий Тролль - Владивосток 2000"],
+                reviews: [
+                    { name: "Анна Ф.", text: "Ольга создает неповторимую атмосферу в музыке. Спасибо!", rating: 5 },
+                    { name: "Михаил Д.", text: "Отличная работа с джазовыми композициями. Профессионал!", rating: 4 },
+                    { name: "Светлана К.", text: "Теплое, живое звучание. Очень довольна результатом.", rating: 5 }
+                ],
+                price: "от 2800 ₽",
+                experience: "5 лет",
+                completedOrders: 134
+            }
+        ];
+
+        // Navigation Functions
+        function navigateToHome() {
+            window.location.href = 'index.html';
+        }
+
+        function navigateToArtistDetail(artistId) {
+            window.location.href = `artist_detail.html?id=${artistId}`;
+        }
+
+        // Get artist by ID
+        function getArtistById(id) {
+            return artistsDatabase.find(artist => artist.id === parseInt(id));
+        }
+
+        // Get URL parameter
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+        }
+
+        // Load artist details on detail page
+        function loadArtistDetails() {
+            const artistId = getURLParameter('id');
+            if (!artistId) {
+                navigateToHome();
+                return;
+            }
+
+            const artist = getArtistById(artistId);
+            if (!artist) {
+                navigateToHome();
+                return;
+            }
+
+            // Update page title
+            document.title = `${artist.name} - Loud&Clear`;
+
+            // Fill artist information
+            document.getElementById('artist-name').textContent = artist.name;
+            document.getElementById('artist-age').textContent = `${artist.age} лет`;
+            document.getElementById('artist-rating').textContent = artist.rating;
+            document.getElementById('artist-specialization').textContent = artist.specialization;
+            document.getElementById('artist-description').textContent = artist.description;
+            document.getElementById('artist-image').src = artist.image;
+            document.getElementById('artist-image').alt = artist.name;
+            document.getElementById('artist-price').textContent = artist.price;
+            document.getElementById('artist-experience').textContent = artist.experience;
+            document.getElementById('artist-orders').textContent = artist.completedOrders;
+
+            // Fill rating stars
+            const ratingStars = document.getElementById('artist-rating-stars');
+            ratingStars.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('i');
+                if (i <= Math.floor(artist.rating)) {
+                    star.className = 'fas fa-star text-yellow-400';
+                } else if (i - 0.5 <= artist.rating) {
+                    star.className = 'fas fa-star-half-alt text-yellow-400';
+                } else {
+                    star.className = 'far fa-star text-yellow-400';
+                }
+                ratingStars.appendChild(star);
+            }
+
+            // Fill works
+            const worksList = document.getElementById('artist-works');
+            worksList.innerHTML = '';
+            artist.works.forEach(work => {
+                const li = document.createElement('li');
+                li.className = 'text-gray-300 mb-2';
+                li.innerHTML = `<i class="fas fa-music text-blue-400 mr-2"></i>${work}`;
+                worksList.appendChild(li);
+            });
+
+            // Fill reviews
+            const reviewsList = document.getElementById('artist-reviews');
+            reviewsList.innerHTML = '';
+            artist.reviews.forEach(review => {
+                const reviewDiv = document.createElement('div');
+                reviewDiv.className = 'bg-gray-800 p-4 rounded-lg mb-4';
+                
+                const starsHtml = Array(5).fill().map((_, i) => 
+                    `<i class="fas fa-star${i < review.rating ? '' : '-o'} text-yellow-400 text-sm"></i>`
+                ).join('');
+                
+                reviewDiv.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-white">${review.name}</h4>
+                        <div class="flex">${starsHtml}</div>
+                    </div>
+                    <p class="text-gray-300">${review.text}</p>
+                `;
+                reviewsList.appendChild(reviewDiv);
+            });
+        }
+
+        // Modal Functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Main page functions
+        function renderArtists(page = 1) {
+            const artistsPerPage = 3;
+            const startIndex = (page - 1) * artistsPerPage;
+            const endIndex = startIndex + artistsPerPage;
+            const artistsToShow = artistsDatabase.slice(startIndex, endIndex);
+            
+            const container = document.getElementById('artists-container');
+            if (!container) return;
+            
+            artistsToShow.forEach((artist, index) => {
+                const artistCard = document.createElement('div');
+                artistCard.className = 'artist-card rounded-lg overflow-hidden fade-in-up';
+                artistCard.style.animationDelay = `${index * 0.2}s`;
+                
+                const starsHtml = Array(5).fill().map((_, i) => 
+                    `<i class="fas fa-star${i < Math.floor(artist.rating) ? '' : (artist.rating % 1 > 0.5 && i === Math.floor(artist.rating)) ? '-half-alt' : '-o'} rating-stars text-sm"></i>`
+                ).join('');
+                
+                artistCard.innerHTML = `
+                    <div class="h-48 bg-gray-800 flex items-center justify-center">
+                        <img src="${artist.image}" alt="${artist.name}" class="h-full w-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-white">${artist.name}</h3>
+                            <span class="text-gray-400 text-sm">${artist.age} лет</span>
+                        </div>
+                        <div class="flex mb-2">
+                            ${starsHtml}
+                            <span class="ml-2 text-gray-400 text-sm">${artist.rating}</span>
+                        </div>
+                        <p class="text-gray-300 font-medium text-sm mb-2">${artist.specialization}</p>
+                        <p class="text-gray-400 text-sm mb-3">${artist.description.substring(0, 80)}...</p>
+                        <button class="btn-primary w-full text-white py-2 rounded text-sm font-semibold" onclick="navigateToArtistDetail(${artist.id})">
+                            Подробнее
+                        </button>
+                    </div>
+                `;
+                container.appendChild(artistCard);
+            });
+            
+            // Hide load more button if no more artists
+            const loadMoreBtn = document.getElementById('load-more');
+            if (loadMoreBtn && endIndex >= artistsDatabase.length) {
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            
+            if (mobileMenu && menuBtn) {
+                mobileMenu.classList.toggle('active');
+                const icon = menuBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
+            }
+        }
+
+        // Initialize page
+        function initializePage() {
+            // Check if we're on the artist detail page
+            if (window.location.pathname.includes('artist_detail.html')) {
+                loadArtistDetails();
+            }
+            
+            // Initialize main page
+            if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
+                let currentPage = 1;
+                renderArtists(currentPage);
+                
+                // Load more button
+                const loadMoreBtn = document.getElementById('load-more');
+                if (loadMoreBtn) {
+                    loadMoreBtn.addEventListener('click', function() {
+                        currentPage++;
+                        renderArtists(currentPage);
+                    });
+                }
+            }
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+            
+            // Logo click handler
+            const logoContainer = document.querySelector('.logo-container');
+            if (logoContainer) {
+                logoContainer.style.cursor = 'pointer';
+                logoContainer.addEventListener('click', navigateToHome);
+            }
+            
+            // Modal close handlers
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                const closeBtn = modal.querySelector('.modal-close');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => closeModal(modal.id));
+                }
+                
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal(modal.id);
+                    }
+                });
+            });
+            
+            // Order and review button handlers
+            const orderBtns = document.querySelectorAll('.order-btn');
+            orderBtns.forEach(btn => {
+                btn.addEventListener('click', () => openModal('orderModal'));
+            });
+            
+            const reviewBtns = document.querySelectorAll('.review-btn');
+            reviewBtns.forEach(btn => {
+                btn.addEventListener('click', () => openModal('reviewModal'));
+            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initializePage);
+        
+        // Handle back button
+        window.addEventListener('popstate', function(event) {
+            if (window.location.pathname.includes('artist_detail.html')) {
+                loadArtistDetails();
+            }
+        });
+    </script>
+</body>
+</html>
