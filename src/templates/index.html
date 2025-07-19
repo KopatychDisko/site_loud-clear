@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loud&Clear - Площадка звукорежиссеров</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('image/studio.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+        
+        .hero-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+        }
+        
+        .logo-waves {
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        .hero-logo-waves {
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.2); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .service-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+        
+        .artist-card {
+            background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
+            border: 1px solid #333;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .artist-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.15);
+            border-color: #4a5568;
+        }
+        
+        .artist-card:hover .artist-photo {
+            transform: scale(1.1);
+        }
+        
+        .advantage-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .advantage-icon {
+            width: 80px;
+            height: 80px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            border: none;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+            border: none;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #2c5282 0%, #2a4d7a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-link {
+            color: #999;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #fff;
+        }
+        
+        .mobile-menu {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu.active {
+                display: block;
+            }
+            
+            .desktop-menu {
+                display: none;
+            }
+            
+            .hero-bg {
+                background-attachment: scroll;
+            }
+            
+            .artist-photo, .artist-photo-placeholder {
+                width: 100px;
+                height: 100px;
+            }
+        }
+        
+        .section-padding {
+            padding: 4rem 0;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .rating-stars {
+            color: #fbbf24;
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .text-improved {
+            color: #e2e8f0;
+        }
+        
+        .text-improved-light {
+            color: #cbd5e0;
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .loading-spinner {
+            border: 4px solid #333;
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #dc2626;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Синхронизированные стили фотографий с artist.html */
+        .artist-photo-section {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            position: relative;
+        }
+        
+        .artist-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .artist-photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid #333;
+            font-size: 2.5rem;
+            color: #e2e8f0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .specialization-tag {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: #e2e8f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: inline-block;
+            margin: 0.2rem;
+            border: 1px solid #4a5568;
+        }
+        
+        .artist-info-section {
+            padding: 1.5rem;
+        }
+        
+        .artist-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            background: #0a0a0a;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-number {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #3182ce;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #cbd5e0;
+            font-size: 0.7rem;
+            margin-top: 0.2rem;
+        }
+        
+        .artist-card-footer {
+            padding: 1rem 1.5rem;
+            background: #0a0a0a;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price-tag {
+            color: #3182ce;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .rating-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0.5rem 0;
+        }
+        
+        .rating-text {
+            margin-left: 0.5rem;
+            color: #fbbf24;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="smooth-scroll">
+    <!-- Header -->
+    <header class="gradient-bg py-6 sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="logo-container" onclick="scrollToTop()">
+                    <svg class="logo-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="30" cy="30" r="29" stroke="#fff" stroke-width="2"/>
+                        <rect class="logo-waves" x="15" y="20" width="4" height="20" fill="#fff"/>
+                        <rect class="logo-waves" x="22" y="15" width="4" height="30" fill="#fff" style="animation-delay: 0.2s"/>
+                        <rect class="logo-waves" x="29" y="10" width="4" height="40" fill="#fff" style="animation-delay: 0.4s"/>
+                        <rect class="logo-waves" x="36" y="15" width="4" height="30" fill="#fff" style="animation-delay: 0.6s"/>
+                        <rect class="logo-waves" x="43" y="20" width="4" height="20" fill="#fff" style="animation-delay: 0.8s"/>
+                    </svg>
+                    <div>
+                        <h1 class="text-3xl font-bold text-white">Loud&Clear</h1>
+                        <p class="text-sm text-gray-300">Площадка звукорежиссеров</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="desktop-menu hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="#services" class="text-white hover:text-gray-300 transition">Услуги</a></li>
+                        <li><a href="#team" class="text-white hover:text-gray-300 transition">Команда</a></li>
+                        <li><a href="#advantages" class="text-white hover:text-gray-300 transition">Преимущества</a></li>
+                        <li><a href="#contact" class="text-white hover:text-gray-300 transition">Контакты</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-white" id="mobile-menu-btn">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu mt-4" id="mobile-menu">
+                <ul class="flex flex-col space-y-4">
+                    <li><a href="#services" class="text-white hover:text-gray-300 transition">Услуги</a></li>
+                    <li><a href="#team" class="text-white hover:text-gray-300 transition">Команда</a></li>
+                    <li><a href="#advantages" class="text-white hover:text-gray-300 transition">Преимущества</a></li>
+                    <li><a href="#contact" class="text-white hover:text-gray-300 transition">Контакты</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg">
+        <div class="container mx-auto px-4">
+            <div class="hero-content text-center max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <svg class="hero-logo" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="60" cy="60" r="58" stroke="#fff" stroke-width="4"/>
+                        <rect class="hero-logo-waves" x="30" y="40" width="8" height="40" fill="#fff"/>
+                        <rect class="hero-logo-waves" x="44" y="30" width="8" height="60" fill="#fff" style="animation-delay: 0.2s"/>
+                        <rect class="hero-logo-waves" x="58" y="20" width="8" height="80" fill="#fff" style="animation-delay: 0.4s"/>
+                        <rect class="hero-logo-waves" x="72" y="30" width="8" height="60" fill="#fff" style="animation-delay: 0.6s"/>
+                        <rect class="hero-logo-waves" x="86" y="40" width="8" height="40" fill="#fff" style="animation-delay: 0.8s"/>
+                    </svg>
+                </div>
+                <h2 class="text-6xl font-bold mb-4 text-white text-shadow">Loud&Clear</h2>
+                <p class="text-2xl text-gray-100 mb-8 text-shadow">
+                    Объединение талантливых звукорежиссеров со всей России. Более 50 профессионалов с опытом работы от 5 лет.
+                </p>
+                <a href="#services" class="btn-primary text-white px-8 py-3 rounded-lg text-lg font-semibold inline-block">
+                    Наши услуги
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-padding" style="background: #0a0a0a;">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8 text-white">О нашей компании</h2>
+                <p class="text-lg text-improved mb-6 leading-relaxed">
+                    Loud&Clear - это объединение талантливых звукорежиссеров со всей России, созданное в 2018 году. 
+                    Начав с небольшой студии в Москве, мы выросли в национальную платформу, объединяющую более 50 профессионалов звука.
+                </p>
+                <p class="text-lg text-improved-light leading-relaxed">
+                    Наша миссия - сделать качественный звук доступным каждому музыканту, независимо от жанра и уровня подготовки. 
+                    Мы сочетаем техническое мастерство с творческим подходом, чтобы ваш звук был действительно Loud&Clear.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-12 text-center text-white">Наши услуги</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card rounded-lg overflow-hidden">
+                    <div class="h-48 bg-gray-800 flex items-center justify-center">
+                        <i class="fas fa-sliders-h text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white text-center">Сведение треков</h3>
+                        <p class="text-gray-300 mb-4 text-center">Профессиональное сведение ваших треков для идеального баланса всех элементов композиции.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold">от 3 000 ₽</span>
+                            <a href="https://t.me/loudandclear_bot" target="_blank" class="btn-secondary text-white px-4 py-2 rounded font-semibold">
+                                <i class="fab fa-telegram mr-1"></i> Заказать
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card rounded-lg overflow-hidden">
+                    <div class="h-48 bg-gray-800 flex items-center justify-center">
+                        <i class="fas fa-star text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white text-center">Мастеринг</h3>
+                        <p class="text-gray-300 mb-4 text-center">Финальная полировка вашего трека для достижения коммерческого уровня громкости и качества.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold">от 2 500 ₽</span>
+                            <a href="https://t.me/loudandclear_bot" target="_blank" class="btn-secondary text-white px-4 py-2 rounded font-semibold">
+                                <i class="fab fa-telegram mr-1"></i> Заказать
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card rounded-lg overflow-hidden">
+                    <div class="h-48 bg-gray-800 flex items-center justify-center">
+                        <i class="fas fa-drum text-6xl text-white"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-white text-center">Продакшн битов</h3>
+                        <p class="text-gray-300 mb-4 text-center">Создание уникальных битов под ваш стиль с учетом современных тенденций музыки.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white font-bold">от 5 000 ₽</span>
+                            <a href="https://t.me/loudandclear_bot" target="_blank" class="btn-secondary text-white px-4 py-2 rounded font-semibold">
+                                <i class="fab fa-telegram mr-1"></i> Заказать
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section id="advantages" class="section-padding" style="background: #0a0a0a;">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-12 text-center text-white">Почему выбирают нас</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Advantage 1 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-users text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Команда профессионалов</h3>
+                    <p class="text-gray-300">50+ звукорежиссеров с опытом работы от 5 лет в различных жанрах музыки</p>
+                </div>
+                
+                <!-- Advantage 2 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-tachometer-alt text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Быстрые сроки</h3>
+                    <p class="text-gray-300">Среднее время выполнения заказа - 3 дня, срочные заказы за 24 часа</p>
+                </div>
+                
+                <!-- Advantage 3 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-medal text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Гарантия качества</h3>
+                    <p class="text-gray-300">Бесплатные правки в течение 7 дней после получения результата</p>
+                </div>
+                
+                <!-- Advantage 4 -->
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-ruble-sign text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">Доступные цены</h3>
+                    <p class="text-gray-300">Гибкая система скидок для постоянных клиентов и объемных заказов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Section -->
+    <section id="team" class="section-padding bg-black">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold mb-12 text-center text-white">Наши звукорежиссеры</h2>
+            
+            <!-- Loading indicator -->
+            <div id="loading-indicator" class="loading-spinner"></div>
+            
+            <!-- Error message -->
+            <div id="error-message" class="error-message" style="display: none;"></div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="artists-container">
+                <!-- Artists will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Telegram CTA Section -->
+    <section id="contact" class="section-padding gradient-bg">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <i class="fab fa-telegram text-6xl text-white mb-6"></i>
+                <h2 class="text-4xl font-bold mb-6 text-white">Общайтесь с нами в Telegram</h2>
+                <p class="text-xl mb-8 text-gray-300">
+                    Наш чат-бот поможет вам быстро выбрать звукорежиссера, рассчитать стоимость работы и оформить заказ.
+                    Получите консультацию прямо сейчас!
+                </p>
+                <a href="https://t.me/loudandclear_bot" target="_blank" class="btn-primary text-white px-8 py-4 rounded-lg text-lg font-semibold inline-block">
+                    <i class="fab fa-telegram mr-2"></i> Перейти в Telegram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start">
+                        <i class="fas fa-volume-up text-2xl mr-2 text-white"></i>
+                        <span class="text-xl font-bold text-white">Loud&Clear</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">Площадка звукорежиссеров России © 2023</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="footer-link">
+                        <i class="fab fa-vk text-xl"></i>
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fab fa-telegram text-xl"></i>
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="footer-link">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to render stars based on rating
+        function renderStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            
+            let starsHTML = '';
+            
+            // Full stars
+            for (let i = 0; i < fullStars; i++) {
+                starsHTML += '<i class="fas fa-star rating-stars text-sm"></i>';
+            }
+            
+            // Half star
+            if (hasHalfStar) {
+                starsHTML += '<i class="fas fa-star-half-alt rating-stars text-sm"></i>';
+            }
+            
+            // Empty stars
+            for (let i = 0; i < emptyStars; i++) {
+                starsHTML += '<i class="far fa-star rating-stars text-sm"></i>';
+            }
+            
+            return starsHTML;
+        }
+
+        // Function to create artist photo HTML with synchronized styling from artist.html
+        function createArtistPhoto(artist) {
+            const hasValidImage = artist.image_url && artist.image_url.trim() !== '' && artist.image_url !== 'null';
+            
+            if (hasValidImage) {
+                return `
+                    <img src="${artist.image_url}" 
+                         alt="${artist.name}" 
+                         class="artist-photo"
+                         onerror="this.outerHTML='<div class=&quot;artist-photo-placeholder&quot;><i class=&quot;fas fa-user&quot;></i></div>'">
+                `;
+            } else {
+                return `
+                    <div class="artist-photo-placeholder">
+                        <i class="fas fa-user"></i>
+                    </div>
+                `;
+            }
+        }
+
+        // Function to load and render artists
+        async function loadArtists() {
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const errorMessage = document.getElementById('error-message');
+            const container = document.getElementById('artists-container');
+            
+            try {
+                // Show loading indicator
+                loadingIndicator.style.display = 'block';
+                errorMessage.style.display = 'none';
+                
+                // Fetch artists from API
+                const response = await fetch('/api/ten_artist');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Hide loading indicator
+                loadingIndicator.style.display = 'none';
+                
+                // Check if we have executors data
+                if (!data.executors || !Array.isArray(data.executors)) {
+                    throw new Error('Invalid data format received from API');
+                }
+                
+                // Clear container
+                container.innerHTML = '';
+                
+                // Render each artist with improved design
+                data.executors.forEach((artist, index) => {
+                    const artistCard = document.createElement('div');
+                    artistCard.className = 'artist-card fade-in-up';
+                    artistCard.style.animationDelay = `${index * 0.1}s`;
+                    
+                    // Handle data
+                    const description = artist.description || 'Профессиональный звукорежиссер';
+                    const shortDescription = description.length > 120 ? description.substring(0, 120) + '...' : description;
+                    const specialization = artist.works || 'Звукорежиссура';
+                    const priceText = artist.price ? `от ${artist.price} ₽` : 'По договоренности';
+                    const experienceText = artist.experience ? `${artist.experience}` : '5+';
+                    const ordersText = artist.completed_orders ? `${artist.completed_orders}` : '0';
+                    
+                    // Parse specializations
+                    const specs = specialization.split(',').map(s => s.trim()).filter(s => s).slice(0, 3);
+                    const specializationTags = specs.map(spec => 
+                        `<span class="specialization-tag">${spec}</span>`
+                    ).join('');
+                    
+                    artistCard.innerHTML = `
+                        <div class="artist-photo-section">
+                            ${createArtistPhoto(artist)}
+                        </div>
+                        <div class="artist-info-section">
+                            <div class="text-center mb-3">
+                                <h3 class="text-lg font-bold text-white mb-1">${artist.name || 'Имя не указано'}</h3>
+                                ${artist.age ? `<p class="text-gray-400 text-sm">${artist.age} лет</p>` : ''}
+                            </div>
+                            
+                            <div class="rating-section">
+                                ${renderStars(artist.rating || 0)}
+                                <span class="rating-text">${(artist.rating || 0).toFixed(1)}</span>
+                            </div>
+                            
+                            <div class="text-center mb-3">
+                                ${specializationTags}
+                            </div>
+                            
+                            <p class="text-gray-300 text-sm mb-3 line-clamp-3 text-center">${shortDescription}</p>
+                            
+                            <div class="artist-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number">${experienceText}</span>
+                                    <div class="stat-label">лет опыта</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">${ordersText}</span>
+                                    <div class="stat-label">заказов</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number">${(artist.rating || 0).toFixed(1)}</span>
+                                    <div class="stat-label">рейтинг</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="artist-card-footer">
+                            <span class="price-tag">${priceText}</span>
+                            <button class="btn-primary text-sm" onclick="openArtistDetail('${artist.id}')">
+                                <i class="fas fa-info-circle mr-1"></i>
+                                Подробнее
+                            </button>
+                        </div>
+                    `;
+                    
+                    container.appendChild(artistCard);
+                });
+                
+                // If no artists found
+                if (data.executors.length === 0) {
+                    container.innerHTML = '<div class="col-span-full text-center text-gray-400 py-8">Звукорежиссеры пока не найдены</div>';
+                }
+                
+            } catch (error) {
+                console.error('Error loading artists:', error);
+                
+                // Hide loading indicator
+                loadingIndicator.style.display = 'none';
+                
+                // Show error message
+                errorMessage.style.display = 'block';
+                errorMessage.textContent = `Ошибка загрузки звукорежиссеров: ${error.message}`;
+                
+                // Show fallback message in container
+                container.innerHTML = '<div class="col-span-full text-center text-gray-400 py-8">Не удалось загрузить список звукорежиссеров. Попробуйте обновить страницу.</div>';
+            }
+        }
+
+        // Function to open artist details page
+        function openArtistDetail(artistId) {
+            window.location.href = `/artist?uuid=${artistId}`;
+        }
+
+        // Function to scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load artists on page load
+            loadArtists();
+            
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                });
+            }
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
